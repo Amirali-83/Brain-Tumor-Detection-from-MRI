@@ -5,8 +5,8 @@ This project implements a U-Net architecture with a ResNet34 encoder to perform 
 
 ------------
 ### Model Architecture
-•Backbone: ResNet34 (ImageNet pretrained)
-•Segmentation head: U-Net
+- Backbone: ResNet34 (ImageNet pretrained)
+- Segmentation head: U-Net
 •Loss Function: Combined Dice Loss + CrossEntropyLoss
 •Framework: PyTorch + segmentation-models-pytorch
 •Precision: Automatic Mixed Precision (AMP) for faster training on T4 GPUs
