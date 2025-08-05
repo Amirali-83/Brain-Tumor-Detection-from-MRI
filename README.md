@@ -7,13 +7,13 @@ This project implements a U-Net architecture with a ResNet34 encoder to perform 
 ### Model Architecture
 - Backbone: ResNet34 (ImageNet pretrained)
 - Segmentation head: U-Net
-•Loss Function: Combined Dice Loss + CrossEntropyLoss
-•Framework: PyTorch + segmentation-models-pytorch
-•Precision: Automatic Mixed Precision (AMP) for faster training on T4 GPUs
+- Loss Function: Combined Dice Loss + CrossEntropyLoss
+- Framework: PyTorch + segmentation-models-pytorch
+- Precision: Automatic Mixed Precision (AMP) for faster training on T4 GPUs
 
 ----------
 ### Performance
-•Dice Coefficient: ~0.80 (on validation set)
-•IoU Score: ~0.70
-•Visual output includes MRI, true mask, predicted mask, and overlay
-•Includes automated radiology-style interpretation reports
+- Dice Coefficient: ~0.80 (on validation set)
+- IoU Score: ~0.70
+- Visual output includes MRI, true mask, predicted mask, and overlay
+- Includes automated radiology-style interpretation reports
