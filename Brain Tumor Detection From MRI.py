@@ -1,7 +1,3 @@
-Python 3.11.5 (v3.11.5:cce6ba91b3, Aug 24 2023, 10:50:31) [Clang 13.0.0 (clang-1300.0.29.30)] on darwin
-Type "help", "copyright", "credits" or "license()" for more information.
-!pip install -q albumentations segmentation-models-pytorch h5py opencv-python
-
 import os
 import h5py
 import numpy as np
@@ -193,46 +189,41 @@ def visualize_predictions(model, loader, num_samples=3):
         # Dice score for sample
         intersection = ((preds[i] == 1) & (masks[i] == 1)).sum()
         union = ((preds[i] == 1) | (masks[i] == 1)).sum()
-...         dice_sample = (2 * intersection) / (union + intersection + 1e-6)
-... 
-...         plt.subplot(num_samples, 4, 4*i + 1)
-...         plt.imshow(imgs[i], cmap='gray')
-...         plt.title("MRI")
-...         plt.axis('off')
-... 
-...         plt.subplot(num_samples, 4, 4*i + 2)
-...         plt.imshow(masks[i], cmap=true_cmap)
-...         plt.title("True Mask")
-...         plt.axis('off')
-... 
-...         plt.subplot(num_samples, 4, 4*i + 3)
-...         plt.imshow(preds[i], cmap=pred_cmap)
-...         plt.title(f"Predicted Mask\nDice={dice_sample:.2f}")
-...         plt.axis('off')
-... 
-...         plt.subplot(num_samples, 4, 4*i + 4)
-...         plt.imshow(imgs[i], cmap='gray')
-...         plt.imshow(preds[i], alpha=0.5, cmap=pred_cmap)
-...         plt.title("Overlay")
-...         plt.axis('off')
-... 
-...     plt.tight_layout()
-...     plt.savefig("/kaggle/working/visual_results.png", dpi=150)
-...     plt.show()
-... 
-... visualize_predictions(model, val_loader)
-... 
-... 
-...     
-SyntaxError: multiple statements found while compiling a single statement
->>> from matplotlib.backends.backend_pdf import PdfPages
-... 
-... # Evaluate model on a few batches to calculate summary metrics
-... model.eval()
-... val_loss, val_dice, val_iou = val_fn(val_loader)
-... print(f"Validation Dice: {val_dice:.4f}, IoU: {val_iou:.4f}")
-... 
-... def get_visual_samples(model, loader, num_samples=6):
+        dice_sample = (2 * intersection) / (union + intersection + 1e-6)
+ 
+         plt.subplot(num_samples, 4, 4*i + 1)
+         plt.imshow(imgs[i], cmap='gray')
+         plt.title("MRI")
+         plt.axis('off')
+
+         plt.subplot(num_samples, 4, 4*i + 2)
+         plt.imshow(masks[i], cmap=true_cmap)
+         plt.title("True Mask")
+         plt.axis('off')
+ 
+         plt.subplot(num_samples, 4, 4*i + 3)
+         plt.imshow(preds[i], cmap=pred_cmap)
+         plt.title(f"Predicted Mask\nDice={dice_sample:.2f}")
+         plt.axis('off')
+ 
+         plt.subplot(num_samples, 4, 4*i + 4)
+         plt.imshow(imgs[i], cmap='gray')
+         plt.imshow(preds[i], alpha=0.5, cmap=pred_cmap)
+         plt.title("Overlay")
+         plt.axis('off')
+ 
+     plt.tight_layout()
+     plt.savefig("/kaggle/working/visual_results.png", dpi=150)
+     plt.show()
+
+ visualize_predictions(model, val_loader)
+
+ # Evaluate model on a few batches to calculate summary metrics
+ model.eval()
+ val_loss, val_dice, val_iou = val_fn(val_loader)
+ print(f"Validation Dice: {val_dice:.4f}, IoU: {val_iou:.4f}")
+ 
+ def get_visual_samples(model, loader, num_samples=6):
     model.eval()
     imgs, masks = next(iter(loader))
     imgs = imgs.float().to(device)
